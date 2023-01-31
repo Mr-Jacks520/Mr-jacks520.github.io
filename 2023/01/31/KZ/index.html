@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="创建者模式 结构型模式 行为型模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式学习">
+<meta property="og:url" content="http://example.com/2023/01/31/KZ/index.html">
+<meta property="og:site_name" content="KZ">
+<meta property="og:description" content="创建者模式 结构型模式 行为型模式">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://design-patterns.readthedocs.io/zh_CN/latest/_images/seq_SimpleFactory.jpg">
+<meta property="og:image" content="https://design-patterns.readthedocs.io/zh_CN/latest/_images/seq_FactoryMethod.jpg">
+<meta property="og:image" content="https://design-patterns.readthedocs.io/zh_CN/latest/_images/loger.jpg">
+<meta property="og:image" content="https://design-patterns.readthedocs.io/zh_CN/latest/_images/AbatractFactory.jpg">
+<meta property="article:published_time" content="2023-01-31T03:36:26.000Z">
+<meta property="article:modified_time" content="2023-01-31T04:09:02.407Z">
+<meta property="article:author" content="Hence Jacki">
+<meta property="article:tag" content="开发思维">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://design-patterns.readthedocs.io/zh_CN/latest/_images/seq_SimpleFactory.jpg">
+
+
+<link rel="canonical" href="http://example.com/2023/01/31/KZ/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2023/01/31/KZ/","path":"2023/01/31/KZ/","title":"设计模式学习"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>设计模式学习 | KZ</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">KZ</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个技术狂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%88%9B%E5%BB%BA%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">一、创建者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">简单工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B6%89%E5%8F%8A%E5%88%B0%E7%9A%84%E8%A7%92%E8%89%B2%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">涉及到的角色：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="nav-number">1.1.2.</span> <span class="nav-text">Java代码实现：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="nav-number">1.1.3.</span> <span class="nav-text">C++代码实现：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E5%88%86%E6%9E%90%EF%BC%9A"><span class="nav-number">1.1.4.</span> <span class="nav-text">模式分析：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E4%BC%98%E7%82%B9%EF%BC%9A"><span class="nav-number">1.1.5.</span> <span class="nav-text">模式优点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E7%BC%BA%E7%82%B9%EF%BC%9A"><span class="nav-number">1.1.6.</span> <span class="nav-text">模式缺点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="nav-number">1.1.7.</span> <span class="nav-text">使用环境：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">工厂方法模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E8%A7%92%E8%89%B2%EF%BC%9A"><span class="nav-number">1.2.1.</span> <span class="nav-text">模式角色：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%EF%BC%9A-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">Java代码实现：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%EF%BC%9A-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">C++代码实现：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E5%88%86%E6%9E%90%EF%BC%9A-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">模式分析：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.2.5.</span> <span class="nav-text">具体实例：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E4%BC%98%E7%82%B9%EF%BC%9A-1"><span class="nav-number">1.2.6.</span> <span class="nav-text">模式优点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E7%BC%BA%E7%82%B9%EF%BC%9A-1"><span class="nav-number">1.2.7.</span> <span class="nav-text">模式缺点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E6%89%A9%E5%B1%95%EF%BC%9A"><span class="nav-number">1.2.8.</span> <span class="nav-text">模式扩展：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text">抽象工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E8%A7%92%E8%89%B2%EF%BC%9A-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">模式角色：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%EF%BC%9A-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">Java代码实现：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%EF%BC%9A-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">C++代码实现：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E5%88%86%E6%9E%90%EF%BC%9A-2"><span class="nav-number">1.3.4.</span> <span class="nav-text">模式分析：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E4%BC%98%E7%82%B9%EF%BC%9A-2"><span class="nav-number">1.3.5.</span> <span class="nav-text">模式优点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E7%BC%BA%E7%82%B9%EF%BC%9A-2"><span class="nav-number">1.3.6.</span> <span class="nav-text">模式缺点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="nav-number">1.3.7.</span> <span class="nav-text">适用环境：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E5%BA%94%E7%94%A8%EF%BC%9A"><span class="nav-number">1.3.8.</span> <span class="nav-text">模式应用：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%EF%BC%88%E4%BB%85%E4%BE%9B%E5%8F%82%E8%80%83%EF%BC%89%EF%BC%9A"><span class="nav-number">1.3.9.</span> <span class="nav-text">设计思路（仅供参考）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E6%89%A9%E5%B1%95%EF%BC%9A-1"><span class="nav-number">1.3.10.</span> <span class="nav-text">模式扩展：</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hence Jacki"
+      src="https://avatars.githubusercontent.com/u/60866345?v=4">
+  <p class="site-author-name" itemprop="name">Hence Jacki</p>
+  <div class="site-description" itemprop="description">车到山前必有路</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/31/KZ/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/60866345?v=4">
+      <meta itemprop="name" content="Hence Jacki">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KZ">
+      <meta itemprop="description" content="车到山前必有路">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="设计模式学习 | KZ">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          设计模式学习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-01-31 11:36:26 / Modified: 12:09:02" itemprop="dateCreated datePublished" datetime="2023-01-31T11:36:26+08:00">2023-01-31</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>2.5k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>9 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<ul>
+<li>创建者模式</li>
+<li>结构型模式</li>
+<li>行为型模式</li>
+</ul>
+</blockquote>
+<span id="more"></span>
+<h2 id="一、创建者模式"><a href="#一、创建者模式" class="headerlink" title="一、创建者模式"></a>一、创建者模式</h2><p>此设计模式对于类的实例化过程进行了抽象，使得对象的创建和对象的使用分离，使得整个系统的设计符合单一职责原则。</p>
+<ul>
+<li>简单工厂模式</li>
+<li>工厂方法模式</li>
+<li>抽象工厂模式</li>
+<li>建造者模式</li>
+<li>原型模式</li>
+<li>单例模式</li>
+</ul>
+<ol>
+<li><h3 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h3></li>
+</ol>
+<p>又称为静态工厂方法模式，根据传入工厂类参数的不同从而返回不同类的实例，被创建的实例通常都具有共同的父类。</p>
+<h4 id="涉及到的角色："><a href="#涉及到的角色：" class="headerlink" title="涉及到的角色："></a>涉及到的角色：</h4><ul>
+<li>工厂角色：负责实现创建所有实例的内部逻辑</li>
+<li>抽象产品角色：定义创建实例对象的父类，负责描述所有实例所共有的公共接口</li>
+<li>具体产品角色：继承或实现抽象产品的接口，为创建目标，即工厂角色返回的对象实例</li>
+</ul>
+<p><img src="https://design-patterns.readthedocs.io/zh_CN/latest/_images/seq_SimpleFactory.jpg" alt="../_images/seq_SimpleFactory.jpg"></p>
+<h4 id="Java代码实现："><a href="#Java代码实现：" class="headerlink" title="Java代码实现："></a>Java代码实现：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Product</span>&#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">use</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Factory</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Product <span class="title function_">getInstance</span><span class="params">(String name)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">&quot;E&quot;</span>.equals(name))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Earphone</span>();</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">&quot;C&quot;</span>.equals(name))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Cup</span>();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Earphone</span> <span class="keyword">implements</span> <span class="title class_">Product</span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Earphone</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">use</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Earphone Product&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Cup</span> <span class="keyword">implements</span> <span class="title class_">Product</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Cup</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">use</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Cup Product&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SimpleFactory</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Product</span> <span class="variable">cup</span> <span class="operator">=</span> Factory.getInstance(<span class="string">&quot;C&quot;</span>);</span><br><span class="line">        cup.use();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="C-代码实现："><a href="#C-代码实现：" class="headerlink" title="C++代码实现："></a>C++代码实现：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> FACTORY_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FACTORY_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Product.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Cup.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Bike.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Cup</span>;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Bike</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Factory</span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">static</span> Product* <span class="title">getInstance</span><span class="params">(std::string type)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">&quot;C&quot;</span> == type)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Cup</span>();</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">&quot;B&quot;</span> == type)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Bike</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="模式分析："><a href="#模式分析：" class="headerlink" title="模式分析："></a>模式分析：</h4><ul>
+<li>简单工厂模式要点在于：“你需要什么，如果我有，我就给你什么”。即只需要传入一个正确的参数即可获取相应的对象，无需知道其创建细节</li>
+</ul>
+<h4 id="模式优点："><a href="#模式优点：" class="headerlink" title="模式优点："></a>模式优点：</h4><ul>
+<li>对象的创建与使用分离，降低了系统的耦合度</li>
+<li>客户端无需知晓具体产品的类名，只要传入相应的参数即可获取到所需要的对象</li>
+<li>通过引入配置文件，可以在不修改客户端代码的情况下更换和增加新的具体产品类，一定程度上提高了系统的灵活性（一丢丢）</li>
+</ul>
+<h4 id="模式缺点："><a href="#模式缺点：" class="headerlink" title="模式缺点："></a>模式缺点：</h4><ul>
+<li>工厂类一旦不能正常工作，整个系统都要受到影响</li>
+<li>会增加系统中类的个数，再一定程度上增加了系统的复杂度和理解难度</li>
+<li>系统扩展性较差，一旦添加新产品就不得不修改工厂逻辑，再产品类型较多时，可能造成工厂判断逻辑复杂。不利于系统扩展和维护</li>
+<li>简单工厂模式使用了静态工厂方法，造成工厂角色无法形成基于继承的等级架构</li>
+</ul>
+<h4 id="使用环境："><a href="#使用环境：" class="headerlink" title="使用环境："></a>使用环境：</h4><ul>
+<li>具体产品较少，不会造成工厂方法中的业务逻辑过于复杂</li>
+<li>客户端只需知道传入工厂类的参数，对于创建对象不关心</li>
+</ul>
+<ol start="2">
+<li><h3 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h3></li>
+</ol>
+<blockquote>
+<p>开闭原则：对扩展开放，对修改封闭</p>
+</blockquote>
+<p>又称之为工厂模式、虚拟构造器模式或者多态工厂模式，在简单工厂模式的基础上增加了抽象工厂角色，产品类的创建交给抽象工厂的子类去实现，符合==开闭原则==。</p>
+<h4 id="模式角色："><a href="#模式角色：" class="headerlink" title="模式角色："></a>模式角色：</h4><ul>
+<li>抽象产品</li>
+<li>具体产品</li>
+<li>抽象工厂</li>
+<li>具体工厂</li>
+</ul>
+<p><img src="https://design-patterns.readthedocs.io/zh_CN/latest/_images/seq_FactoryMethod.jpg" alt="../_images/seq_FactoryMethod.jpg"></p>
+<h4 id="Java代码实现：-1"><a href="#Java代码实现：-1" class="headerlink" title="Java代码实现："></a>Java代码实现：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// Abstract Product</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Product</span>&#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">use</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Abstract Factory</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Factory</span>&#123;</span><br><span class="line">    Product <span class="title function_">getInstance</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ConcreteProduct</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteProduct</span> <span class="keyword">implements</span> <span class="title class_">Product</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">use</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Concrete product~&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Concrete factory</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConcreteFactory</span> <span class="keyword">implements</span> <span class="title class_">Factory</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Product <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ConcreteProduct</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * FactoryMethod</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FactoryMethod</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Factory</span> <span class="variable">factory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ConcreteFactory</span>();</span><br><span class="line">        <span class="type">Product</span> <span class="variable">product</span> <span class="operator">=</span> factory.getInstance();</span><br><span class="line">        product.use();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="C-代码实现：-1"><a href="#C-代码实现：-1" class="headerlink" title="C++代码实现："></a>C++代码实现：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Factory.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ConcreteFactory.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Product.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ConcreteProduct.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Factory* factory = <span class="keyword">new</span> <span class="built_in">ConcreteFactory</span>();</span><br><span class="line">    Product* pro = factory-&gt;<span class="built_in">getInstance</span>();</span><br><span class="line">    pro-&gt;<span class="built_in">use</span>();</span><br><span class="line">    <span class="keyword">delete</span> factory;</span><br><span class="line">    <span class="keyword">delete</span> pro;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="模式分析：-1"><a href="#模式分析：-1" class="headerlink" title="模式分析："></a>模式分析：</h4><p>工厂方法模式在简单工厂模式的基础上进行了进一步的抽象和推广，对于工厂角色进行了抽象，应用多态特性，保留了简单工厂模式的优点，克服了其缺点。抽象工厂角色不再负责所有产品的创建，将创建工作交给其子类实现，从而实现在增加新产品后不必改动工厂角色的代码，只需要再去实现一个具体工厂类生产新产品即可。</p>
+<h4 id="具体实例："><a href="#具体实例：" class="headerlink" title="具体实例："></a>具体实例：</h4><p>日志记录器</p>
+<p><img src="https://design-patterns.readthedocs.io/zh_CN/latest/_images/loger.jpg" alt="../_images/loger.jpg"></p>
+<h4 id="模式优点：-1"><a href="#模式优点：-1" class="headerlink" title="模式优点："></a>模式优点：</h4><ul>
+<li>同简单工厂模式</li>
+<li>符合==开闭原则==</li>
+</ul>
+<h4 id="模式缺点：-1"><a href="#模式缺点：-1" class="headerlink" title="模式缺点："></a>模式缺点：</h4><ul>
+<li>在添加新的产品类时需要编写新的具体产品类以及与之对应的具体工厂类，系统中类的数量成对增加，在一定程度上增加了系统的复杂度，带来额外的开销。</li>
+<li>增加了系统的抽象性以及理解难度，增加了系统的实现难度</li>
+</ul>
+<h4 id="模式扩展："><a href="#模式扩展：" class="headerlink" title="模式扩展："></a>模式扩展：</h4><ul>
+<li>产品对象的重复使用（对象池的初步雏形？）：工厂对象将创建过的产品保存在一个集合当中，根据客户端的需求对集合进行查询，若有满足需求的对象则直接返回，若无则创建一个新对象，并将这个对象保存至集合中再返回给客户端。</li>
+<li>多态性的丧失和模式的退化：当系统中只存在一个具体工厂类，那么就会造成多态性的丧失；而进一步，若所有产品对象类的创建工作都只交给一个具体工厂类，那么该模式就会发生退化，变为简单工厂模式。</li>
+</ul>
+<ol start="3">
+<li><h3 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h3></li>
+</ol>
+<p>又称之为Kit模式，在工厂方法模式的基础上增加了产品族以及产品等级结构两个概念，使得每一具体工厂不再对应一种具体产品，而是可以提供多个产品对象，这些产品对象的集合称之为产品族。</p>
+<blockquote>
+<ul>
+<li>产品等级架构：即产品的继承结构</li>
+<li>产品族：指由同一工厂生产，位于不同产品等价结构中的一组产品</li>
+</ul>
+</blockquote>
+<h4 id="模式角色：-1"><a href="#模式角色：-1" class="headerlink" title="模式角色："></a>模式角色：</h4><p>同工厂方法模式。</p>
+<p><img src="https://design-patterns.readthedocs.io/zh_CN/latest/_images/AbatractFactory.jpg" alt="../_images/AbatractFactory.jpg"></p>
+<h4 id="Java代码实现：-2"><a href="#Java代码实现：-2" class="headerlink" title="Java代码实现："></a>Java代码实现：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// abstract factory</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Factory</span> &#123;</span><br><span class="line">    ProductA <span class="title function_">createProductA</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    ProductB <span class="title function_">createProductB</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// abstract productA</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">ProductA</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">use</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// abstract ProductB</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">ProductB</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// concrete productA1</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ProductA1</span> <span class="keyword">implements</span> <span class="title class_">ProductA</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">use</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        System.out.println(<span class="string">&quot;PA1 generated and use&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// concrete productA2</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ProductA2</span> <span class="keyword">implements</span> <span class="title class_">ProductA</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">use</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        System.out.println(<span class="string">&quot;PA2 generated and use&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// concrete ProductB1</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ProductB1</span> <span class="keyword">implements</span> <span class="title class_">ProductB</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        System.out.println(<span class="string">&quot;PB1 gengerated and eating&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// concrete ProductB2</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ProductB2</span> <span class="keyword">implements</span> <span class="title class_">ProductB</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        System.out.println(<span class="string">&quot;PB2 gengerated and eating&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// concrete FactoryA</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FactoryA</span> <span class="keyword">implements</span> <span class="title class_">Factory</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> ProductA <span class="title function_">createProductA</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ProductA1</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> ProductB <span class="title function_">createProductB</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ProductB1</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// concrete FactoryB</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FactoryB</span> <span class="keyword">implements</span> <span class="title class_">Factory</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> ProductA <span class="title function_">createProductA</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ProductA2</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> ProductB <span class="title function_">createProductB</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ProductB2</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * AbstractFactory</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AbstractFactory</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// Product Family 1</span></span><br><span class="line">        <span class="type">Factory</span> <span class="variable">factory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FactoryA</span>();</span><br><span class="line">        <span class="type">ProductA</span> <span class="variable">productA1</span> <span class="operator">=</span> factory.createProductA();</span><br><span class="line">        productA1.use();</span><br><span class="line">        <span class="type">ProductB</span> <span class="variable">productB1</span> <span class="operator">=</span> factory.createProductB();</span><br><span class="line">        productB1.eat();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Product Family 2</span></span><br><span class="line">        <span class="type">Factory</span> <span class="variable">factory2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FactoryB</span>();</span><br><span class="line">        <span class="type">ProductA</span> <span class="variable">productA2</span> <span class="operator">=</span> factory2.createProductA();</span><br><span class="line">        productA2.use();</span><br><span class="line">        <span class="type">ProductB</span> <span class="variable">productB2</span> <span class="operator">=</span> factory2.createProductB();</span><br><span class="line">        productB2.eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="C-代码实现：-2"><a href="#C-代码实现：-2" class="headerlink" title="C++代码实现："></a>C++代码实现：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Factory.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Factory1.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Factory2.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ProductA.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ProductB.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// Product Family1</span></span><br><span class="line">    Factory* factory = <span class="keyword">new</span> <span class="built_in">Factory1</span>();</span><br><span class="line">    ProductA* pA1 = factory-&gt;<span class="built_in">createProductA</span>();</span><br><span class="line">    ProductB* pB1 = factory-&gt;<span class="built_in">createProductB</span>();</span><br><span class="line">    pA1-&gt;<span class="built_in">use</span>();</span><br><span class="line">    pB1-&gt;<span class="built_in">eat</span>();</span><br><span class="line">    <span class="keyword">delete</span> factory;</span><br><span class="line">    <span class="keyword">delete</span> pA1;</span><br><span class="line">    <span class="keyword">delete</span> pB1;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Product Family2</span></span><br><span class="line">    Factory* factory1 = <span class="keyword">new</span> <span class="built_in">Factory2</span>();</span><br><span class="line">    ProductA* pA2 = factory1-&gt;<span class="built_in">createProductA</span>();</span><br><span class="line">    ProductB* pB2 = factory1-&gt;<span class="built_in">createProductB</span>();</span><br><span class="line">    pA2-&gt;<span class="built_in">use</span>();</span><br><span class="line">    pB2-&gt;<span class="built_in">eat</span>();</span><br><span class="line">    <span class="keyword">delete</span> factory1;</span><br><span class="line">    <span class="keyword">delete</span> pA2;</span><br><span class="line">    <span class="keyword">delete</span> pB2;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="模式分析：-2"><a href="#模式分析：-2" class="headerlink" title="模式分析："></a>模式分析：</h4><p>抽象工厂模式在工厂方法模式的基础上利用产品族和产品等级架构进行了再次升级抽象，工厂创建不是以某一具体产品为单位，而是以某个产品族为单位进行创建。</p>
+<h4 id="模式优点：-2"><a href="#模式优点：-2" class="headerlink" title="模式优点："></a>模式优点：</h4><ul>
+<li>实现了高内聚低耦合的设计目的</li>
+<li>当一个产品族中的多个对象被设计成一起工作时，它能够保证客户端始终只使用同一个产品族中的对象。这对一些需要根据当前环境来决定其行为的软件系统来说，是一种非常实用的设计模式。</li>
+<li>增加新的产品族和具体工厂很方便，符合==开闭原则==</li>
+</ul>
+<h4 id="模式缺点：-2"><a href="#模式缺点：-2" class="headerlink" title="模式缺点："></a>模式缺点：</h4><ul>
+<li>添加新产品时，难以扩展抽象工厂及其子类实现生产新种类的产品，because抽象工厂中定义了所有可能被创建的产品族，支持新产品意味着要对抽象工厂及其子类实现进行全部修改</li>
+<li>开闭原则的倾斜性（增加新的工厂和产品族容易，增加新的产品等级结构麻烦）</li>
+</ul>
+<h4 id="适用环境："><a href="#适用环境：" class="headerlink" title="适用环境："></a>适用环境：</h4><ul>
+<li>系统中有多于一个的产品族，而每次只使用其中某一产品族</li>
+<li>属于同一个产品族的产品将在一起使用，这一约束必须在系统的设计中体现出来（APP主题的改变）</li>
+</ul>
+<h4 id="模式应用："><a href="#模式应用：" class="headerlink" title="模式应用："></a>模式应用：</h4><p>更换界面主题时，要求界面中的按钮、文本框、背景色一起发生改变时，可以使用抽象工厂模式进行设计。</p>
+<h4 id="设计思路（仅供参考）："><a href="#设计思路（仅供参考）：" class="headerlink" title="设计思路（仅供参考）："></a>设计思路（仅供参考）：</h4><p>界面中的按钮、文本框、背景色都可以“生产”==color/theme==的产品，因此可以属于一个产品族，利用抽象工厂模式对产品族中的每一具体产品进行代工创建，还可以利用对象池的概念对产品族中的对象进行存储复用。当然，十分切合上述适用环境，因为界面主题有很多种（有很多产品族且每次只是用其中某一产品族），同时，这一产品族中的产品肯定会在一起使用。</p>
+<h4 id="模式扩展：-1"><a href="#模式扩展：-1" class="headerlink" title="模式扩展："></a>模式扩展：</h4><ul>
+<li>==开闭原则==的倾斜性</li>
+<li>工厂模式的退化：当抽象工厂模式中每一个具体工厂类只创建一个产品对象，也就是只存在一个产品等级结构时，抽象工厂模式退化成工厂方法模式；当工厂方法模式中抽象工厂与具体工厂合并，提供一个统一的工厂来创建产品对象，并将创建对象的工厂方法设计为静态方法时，工厂方法模式退化成简单工厂模式。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%BC%80%E5%8F%91%E6%80%9D%E7%BB%B4/" rel="tag"># 开发思维</a>
+          </div>
+
+        
+
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hence Jacki</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">3k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">9 mins.</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
