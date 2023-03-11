@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="三月十一日算法总结  二分法 动态规划 二叉树遍历 哈希表 前缀和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="三一一算法总结">
+<meta property="og:url" content="http://example.com/2023/03/11/%E4%B8%89%E4%B8%80%E4%B8%80%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="KZ">
+<meta property="og:description" content="三月十一日算法总结  二分法 动态规划 二叉树遍历 哈希表 前缀和">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-03-11T12:02:58.000Z">
+<meta property="article:modified_time" content="2023-03-11T12:03:20.713Z">
+<meta property="article:author" content="Hence Jacki">
+<meta property="article:tag" content="算法总结">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2023/03/11/%E4%B8%89%E4%B8%80%E4%B8%80%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2023/03/11/%E4%B8%89%E4%B8%80%E4%B8%80%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/","path":"2023/03/11/三一一算法总结/","title":"三一一算法总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>三一一算法总结 | KZ</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">KZ</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个技术狂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E6%9C%88%E5%8D%81%E4%B8%80%E6%97%A5%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">三月十一日算法总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BA%8C%E5%88%86%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">一、二分法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E4%B8%80%EF%BC%88%E5%B7%A6%E9%97%AD%E5%8F%B3%E9%97%AD%EF%BC%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">版本一（左闭右闭）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E4%BA%8C%EF%BC%88%E5%B7%A6%E9%97%AD%E5%8F%B3%E5%BC%80%EF%BC%89"><span class="nav-number">1.1.2.</span> <span class="nav-text">版本二（左闭右开）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">1.1.3.</span> <span class="nav-text">二、动态规划</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86"><span class="nav-number">1.2.</span> <span class="nav-text">三、二叉树遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3%E9%81%8D%E5%8E%86%E7%9A%84%E6%80%9D%E6%83%B3%E4%B8%BA%EF%BC%9A"><span class="nav-number">1.2.1.</span> <span class="nav-text">迭代遍历的思想为：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86%EF%BC%9A"><span class="nav-number">1.2.2.</span> <span class="nav-text">层序遍历：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="nav-number">1.3.</span> <span class="nav-text">四、哈希表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%89%8D%E7%BC%80%E5%92%8C"><span class="nav-number">1.4.</span> <span class="nav-text">五、前缀和</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hence Jacki"
+      src="https://avatars.githubusercontent.com/u/60866345?v=4">
+  <p class="site-author-name" itemprop="name">Hence Jacki</p>
+  <div class="site-description" itemprop="description">车到山前必有路</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/11/%E4%B8%89%E4%B8%80%E4%B8%80%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/60866345?v=4">
+      <meta itemprop="name" content="Hence Jacki">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KZ">
+      <meta itemprop="description" content="车到山前必有路">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="三一一算法总结 | KZ">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          三一一算法总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-03-11 20:02:58 / Modified: 20:03:20" itemprop="dateCreated datePublished" datetime="2023-03-11T20:02:58+08:00">2023-03-11</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>1.6k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>6 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="三月十一日算法总结"><a href="#三月十一日算法总结" class="headerlink" title="三月十一日算法总结"></a>三月十一日算法总结</h1><blockquote>
+<ul>
+<li>二分法</li>
+<li>动态规划</li>
+<li>二叉树遍历</li>
+<li>哈希表</li>
+<li>前缀和</li>
+</ul>
+</blockquote>
+<span id="more"></span>
+<h2 id="一、二分法"><a href="#一、二分法" class="headerlink" title="一、二分法"></a>一、二分法</h2><p>首先，二分法应用的前提是<strong>有序</strong>，为什么？因为只有这样才能精确判定目标数所在区间，即与中间数值比较后，分为了左半区和右半区，由于是有序的，因此能够继续在某一区间进行二分查找！</p>
+<p>其次，要理解领悟二分法的<strong>循环不变量</strong>，即循环过程中不变的是啥？很明显，我们在区间内进行搜索，那么确定的就是区间的形式（左闭右开还是左闭右闭），具体来说就是循环中的区间形式是不会变的，因此在编写代码时就会有两种版本：</p>
+<h3 id="版本一（左闭右闭）"><a href="#版本一（左闭右闭）" class="headerlink" title="版本一（左闭右闭）"></a>版本一（左闭右闭）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> left + (right - left) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (target == nums[mid]) &#123;</span><br><span class="line">        <span class="keyword">return</span> mid;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (target &gt; nums[mid]) &#123;</span><br><span class="line">        left = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        right = mid - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>源区间形式为$[left, right]$，因此 循环中的区间也要保持这样的形式，具体来说就是在更新左右指针的时候需要保持源格式，因此可以这样分析：</p>
+<ul>
+<li>$target &gt; nums[mid]$，此时$target$在右半区，因此需要更新左指针，下次搜索区间应当为$[mid + 1, right]$，因此，$left=mid + 1$</li>
+<li>$taregt &lt; nums[mid]$，此时target在左半区，因此需要更新右指针，下次搜索区间应当为$[left, mid - 1]$。因此，$right = mid - 1$</li>
+</ul>
+<h3 id="版本二（左闭右开）"><a href="#版本二（左闭右开）" class="headerlink" title="版本二（左闭右开）"></a>版本二（左闭右开）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> left + (right - left) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (target == nums[mid]) &#123;</span><br><span class="line">        <span class="keyword">return</span> mid;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (target &gt; nums[mid]) &#123;</span><br><span class="line">        left = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        right = mid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>源区间格式为$[left, right)$，因此循环中也要保持这样的格式：</p>
+<ul>
+<li>$target &gt; nums[mid]$，此时$target$在右半区，因此需要更新左指针，下次搜索区间应当为$[mid + 1, right)$，因此，$left=mid + 1$</li>
+<li>$taregt &lt; nums[mid]$，此时target在左半区，因此需要更新右指针，下次搜索区间应当为$[left, mid - 1)$。因此，$right = mid$</li>
+</ul>
+<p>注意，在有些问题下，返回的条件需要做出变更，例如寻找目标数字在重复数组之中的开始索引和结束索引，此时就可以将问题转换，即寻找<strong>第一个等于目标数的下标和寻找第一个大于目标数的下标</strong>。因为二分法最终一定会收敛到目标问题的附近，所以理论上可以直接返回左右指针中的某一个变化值，当然也可以将满足条件的记录下来最后返回。</p>
+<h3 id="二、动态规划"><a href="#二、动态规划" class="headerlink" title="二、动态规划"></a>二、动态规划</h3><p>首先，动态规划和贪心的最大区别在于，动态规划利用之前的状态进行抉择计算，拥有重复的子问题，而贪心算法只是做出了当前最好的选择，并未关注之前的状态，因此动态规划更加高大上一点哼哈~</p>
+<p>其次，动态规划最重要的就是对于 $dp$ 数组的<strong>下标理解</strong>以及<strong>值的理解</strong>，往往理解清楚了，也就成功了一大半儿~</p>
+<p>接着，就是动态规划的一般流程：</p>
+<ul>
+<li>确定$dp$数组的含义</li>
+<li>递推式推导</li>
+<li>初始化$dp$数组</li>
+<li>确定遍历顺序</li>
+<li>打印数组是否和预想的一样</li>
+</ul>
+<p>为啥要确定遍历顺序？在背包问题中，用二维数组解题当然不用关注了，先遍历物品和先遍历背包容量一毛一样，然而，用状态压缩后的一维数组解题需要关注了，因为分析后发现倘若先遍历背包容量的话，就会导致内层循环仅仅求得最大物品价值然后放入背包中，那么后序的遍历就都会重复选取价值最大的物品。</p>
+<p>综上所述，动态规划很难，但是需要迎难而上，模仿别人的思考过程！</p>
+<h2 id="三、二叉树遍历"><a href="#三、二叉树遍历" class="headerlink" title="三、二叉树遍历"></a>三、二叉树遍历</h2><p>首先，二叉树遍历无非就是三种：</p>
+<ul>
+<li>递归遍历</li>
+<li>迭代遍历</li>
+<li>层序遍历</li>
+</ul>
+<p>其中的递归遍历十分好理解，即先遍历什么后遍历什么的问题而已。</p>
+<p>比如前序遍历的顺序就是左中右，中序遍历的顺序为中左右，后序遍历的顺序为左右中。</p>
+<p>而迭代遍历就稍微有些困难了，当然也无非就是用栈来模拟而已，层序遍历有两种方式，但是我觉得统一遍历格式比较好理解，只要将其吃透，一招鲜，吃遍天！</p>
+<p>递归遍历不再赘述了。</p>
+<h3 id="迭代遍历的思想为："><a href="#迭代遍历的思想为：" class="headerlink" title="迭代遍历的思想为："></a>迭代遍历的思想为：</h3><p>在将某结点放入栈时，在其后方插入<code>null</code>值，表示<strong>吾需要被访问</strong>，这样一来，在遍历中只要遇到了<code>null</code>值，就弹出栈顶进行访问，因此写出来的形式与递归如出一辙！</p>
+<h3 id="层序遍历："><a href="#层序遍历：" class="headerlink" title="层序遍历："></a>层序遍历：</h3><p>而层序遍历就是利用了队列的先进先出特性，先访问出队结点，将每一个出队节点的子节点全部入栈，这样一来，下一次出栈的就只会是每一层的节点了！</p>
+<h2 id="四、哈希表"><a href="#四、哈希表" class="headerlink" title="四、哈希表"></a>四、哈希表</h2><p>首先，分析问题是否有重复的元素，若有则可以利用Set或者HashMap进行统计解题，总体来说不是很难。</p>
+<p>其次，最经典的问题有：字母异位词、赎金信、两数之和等问题，其核心就是：</p>
+<ul>
+<li>字母出现频次相同</li>
+<li>排序后是相等的！</li>
+<li>过往云烟，尽现眼前。</li>
+</ul>
+<p>综上述，哈希表需要更加掌握！</p>
+<h2 id="五、前缀和"><a href="#五、前缀和" class="headerlink" title="五、前缀和"></a>五、前缀和</h2><p>首先，前缀和就是：<strong>一个数组的前几项的和</strong>，换句话说就是一个数列，使得$s[i+1]=s[i] + nums[i]$，其中一个最大的特性为，<strong>数组中的某一段（或者叫子数组）之和可以表达为前缀和之差</strong>。利用这个特性可以解决很多问题！</p>
+<p>其次，前缀和+哈希表的组合一般出现次数比较多，基本上都涉及到了<strong>连续子数组</strong>的问题。</p>
+<p>最后，前缀和+哈希表的一般思路就是哈希表记录下标第一次出现的位置，然后根据具体条件得出一个范围。</p>
+<p>综上所示，前缀和还是需要了解一下的，很多问题可以转化哦~</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" rel="tag"># 算法总结</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/03/11/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/" rel="prev" title="字符串操作">
+                  <i class="fa fa-chevron-left"></i> 字符串操作
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hence Jacki</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">NaNm</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">NaN:aN</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
