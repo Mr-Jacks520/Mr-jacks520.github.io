@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="字符串学习  反转字符串  反转字符串II  替换空格  翻转字符串里的单词  左旋转字符串  实现strStr()-KMP  重复的子字符串">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字符串操作">
+<meta property="og:url" content="http://example.com/2023/03/11/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="KZ">
+<meta property="og:description" content="字符串学习  反转字符串  反转字符串II  替换空格  翻转字符串里的单词  左旋转字符串  实现strStr()-KMP  重复的子字符串">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://code-thinking-1253855093.file.myqcloud.com/pics/20220728212157.png">
+<meta property="article:published_time" content="2023-03-11T10:39:35.000Z">
+<meta property="article:modified_time" content="2023-03-11T10:40:04.629Z">
+<meta property="article:author" content="Hence Jacki">
+<meta property="article:tag" content="算法学习">
+<meta property="article:tag" content="字符串操作">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://code-thinking-1253855093.file.myqcloud.com/pics/20220728212157.png">
+
+
+<link rel="canonical" href="http://example.com/2023/03/11/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2023/03/11/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/","path":"2023/03/11/字符串操作/","title":"字符串操作"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>字符串操作 | KZ</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">KZ</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个技术狂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">字符串学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.1.</span> <span class="nav-text">一、反转字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">Java代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2II"><span class="nav-number">1.2.</span> <span class="nav-text">二、反转字符串II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">Java代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC"><span class="nav-number">1.3.</span> <span class="nav-text">三、替换空格</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">Java代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%8D%95%E8%AF%8D"><span class="nav-number">1.4.</span> <span class="nav-text">四、反转字符串中的单词</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%B7%A6%E6%97%8B%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.5.</span> <span class="nav-text">五、左旋转字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-3"><span class="nav-number">1.5.1.</span> <span class="nav-text">Java代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%AE%9E%E7%8E%B0strStr-KMP"><span class="nav-number">1.6.</span> <span class="nav-text">六、实现strStr()-KMP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-4"><span class="nav-number">1.6.1.</span> <span class="nav-text">Java代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E9%87%8D%E5%A4%8D%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.7.</span> <span class="nav-text">七、重复的子字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-5"><span class="nav-number">1.7.1.</span> <span class="nav-text">Java代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.8.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hence Jacki"
+      src="https://avatars.githubusercontent.com/u/60866345?v=4">
+  <p class="site-author-name" itemprop="name">Hence Jacki</p>
+  <div class="site-description" itemprop="description">车到山前必有路</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/11/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/60866345?v=4">
+      <meta itemprop="name" content="Hence Jacki">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KZ">
+      <meta itemprop="description" content="车到山前必有路">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="字符串操作 | KZ">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          字符串操作
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-03-11 18:39:35 / Modified: 18:40:04" itemprop="dateCreated datePublished" datetime="2023-03-11T18:39:35+08:00">2023-03-11</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>2.9k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>11 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="字符串学习"><a href="#字符串学习" class="headerlink" title="字符串学习"></a>字符串学习</h1><blockquote>
+<ul>
+<li><p>反转字符串</p>
+</li>
+<li><p>反转字符串II</p>
+</li>
+<li><p>替换空格</p>
+</li>
+<li><p>翻转字符串里的单词</p>
+</li>
+<li><p>左旋转字符串</p>
+</li>
+<li><p>实现strStr()-KMP</p>
+</li>
+<li><p>重复的子字符串</p>
+</li>
+</ul>
+</blockquote>
+<span id="more"></span>
+<h2 id="一、反转字符串"><a href="#一、反转字符串" class="headerlink" title="一、反转字符串"></a>一、反转字符串</h2><p>编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 char[] 的形式给出。</p>
+<p>不要给另外的数组分配额外的空间，你必须原地修改输入数组、使用 O(1) 的额外空间解决这一问题。</p>
+<p>你可以假设数组中的所有字符都是 ASCII 码表中的可打印字符。</p>
+<p>示例 1：<br>输入：[“h”,”e”,”l”,”l”,”o”]<br>输出：[“o”,”l”,”l”,”e”,”h”]</p>
+<p>示例 2：<br>输入：[“H”,”a”,”n”,”n”,”a”,”h”]<br>输出：[“h”,”a”,”n”,”n”,”a”,”H”]</p>
+<h3 id="Java代码实现"><a href="#Java代码实现" class="headerlink" title="Java代码实现"></a>Java代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">reverseString</span><span class="params">(<span class="type">char</span>[] s)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> s.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = len - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">            <span class="type">char</span> <span class="variable">tmp</span> <span class="operator">=</span> s[left];</span><br><span class="line">            s[left] = s[right];</span><br><span class="line">            s[right] = tmp;</span><br><span class="line">            left++;</span><br><span class="line">            right--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本题还是比较简单的，直接双指针交换就完事儿了。</p>
+<h2 id="二、反转字符串II"><a href="#二、反转字符串II" class="headerlink" title="二、反转字符串II"></a>二、反转字符串II</h2><p>给定一个字符串 s 和一个整数 k，从字符串开头算起, 每计数至 2k 个字符，就反转这 2k 个字符中的前 k 个字符。</p>
+<p>如果剩余字符少于 k 个，则将剩余字符全部反转。</p>
+<p>如果剩余字符小于 2k 但大于或等于 k 个，则反转前 k 个字符，其余字符保持原样。</p>
+<p>示例:</p>
+<p>输入: s = “abcdefg”, k = 2<br>输出: “bacdfeg”</p>
+<h3 id="Java代码实现-1"><a href="#Java代码实现-1" class="headerlink" title="Java代码实现"></a>Java代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">reverseStr</span><span class="params">(String s, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        <span class="type">char</span>[] sChar = s.toCharArray();</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> s.length();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; len; i += (<span class="number">2</span> * k)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i + k &lt;= len) &#123;</span><br><span class="line">                reverse(sChar, i, i + k - <span class="number">1</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                reverse(sChar, i, len - <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">String</span>(sChar);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">reverse</span><span class="params">(<span class="type">char</span>[] str, <span class="type">int</span> left, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">            <span class="type">char</span> <span class="variable">tmp</span> <span class="operator">=</span> str[left];</span><br><span class="line">            str[left] = str[right];</span><br><span class="line">            str[right] = tmp;</span><br><span class="line">            left++;</span><br><span class="line">            right--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本题主要是要先<strong>理解题意！</strong>，然后直接模拟就完了，然后就是题中写道<strong>每遇到2k个字符</strong>，那我们就可以直接将步进量设置为<code>2k</code>，不必一个一个加。</p>
+<p><code>i + k &lt;= len</code>：这个条件对应的是剩余字符小于2k但大于等于k个</p>
+<p>剩下的判断条件就是对应剩余字符少于k个。</p>
+<p>是不是很妙？直接通过做加法就可以确定剩下字符的数量！</p>
+<h2 id="三、替换空格"><a href="#三、替换空格" class="headerlink" title="三、替换空格"></a>三、替换空格</h2><p>请实现一个函数，把字符串 <code>s</code> 中的每个空格替换成”%20”。</p>
+<h3 id="Java代码实现-2"><a href="#Java代码实现-2" class="headerlink" title="Java代码实现"></a>Java代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 列表暴力求解</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">replaceSpace</span><span class="params">(String s)</span> &#123;</span><br><span class="line">        <span class="type">char</span>[] sChar = s.toCharArray();</span><br><span class="line">        List&lt;Character&gt; ans = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> s.length();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; len; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (sChar[i] == <span class="string">&#x27; &#x27;</span>) &#123;</span><br><span class="line">                ans.add(<span class="string">&#x27;%&#x27;</span>);</span><br><span class="line">                ans.add(<span class="string">&#x27;2&#x27;</span>);</span><br><span class="line">                ans.add(<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                ans.add(sChar[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">char</span>[] res = <span class="keyword">new</span> <span class="title class_">char</span>[ans.size()];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; ans.size(); ++i) &#123;</span><br><span class="line">            res[i] = ans.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">String</span>(res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 原地扩容+双指针</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">replaceSpace</span><span class="params">(String s)</span> &#123;</span><br><span class="line">        <span class="type">char</span>[] sChar = s.toCharArray();</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> sChar.length;</span><br><span class="line">        <span class="comment">// 统计空格数</span></span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">str</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; len; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (sChar[i] == <span class="string">&#x27; &#x27;</span>) &#123;</span><br><span class="line">                str.append(<span class="string">&quot;  &quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 无空格直接返回</span></span><br><span class="line">        <span class="keyword">if</span> (str.length() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> s;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 扩容</span></span><br><span class="line">        s += str.toString();</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> len - <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> s.length() - <span class="number">1</span>;</span><br><span class="line">        <span class="type">char</span>[] ss = s.toCharArray();</span><br><span class="line">        <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ss[i] != <span class="string">&#x27; &#x27;</span>) &#123;</span><br><span class="line">                ss[j] = ss[i];</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                ss[j--] = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">                ss[j--] = <span class="string">&#x27;2&#x27;</span>;</span><br><span class="line">                ss[j] = <span class="string">&#x27;%&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            i--;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">String</span>(ss);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本题用列表模拟完全是可以做出来的额。当然，对于解法二也是十分的巧妙，扩容完成之后，利用双指针，一个指向旧字符串末尾，一个指向新字符串末尾，然后判断是要干嘛？</p>
+<ul>
+<li><p>是要直接复制？</p>
+</li>
+<li><p>是要填充特殊字符？</p>
+</li>
+</ul>
+<h2 id="四、反转字符串中的单词"><a href="#四、反转字符串中的单词" class="headerlink" title="四、反转字符串中的单词"></a>四、反转字符串中的单词</h2><p>给定一个字符串，逐个翻转字符串中的每个单词。</p>
+<p>示例 1：<br>输入: “the sky is blue”<br>输出: “blue is sky the”</p>
+<p>示例 2：<br>输入: “  hello world!  “<br>输出: “world! hello”<br>解释: 输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。</p>
+<p>示例 3：<br>输入: “a good   example”<br>输出: “example good a”<br>解释: 如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 开辟新空间+双指针拷贝</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">reverseWords</span><span class="params">(String s)</span> &#123;</span><br><span class="line">        s = s.trim(); <span class="comment">// 首尾去除空格</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> s.length();</span><br><span class="line">        <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> len - <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> len - <span class="number">1</span>;</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">        <span class="keyword">while</span> (left &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">while</span> (left &gt;= <span class="number">0</span> &amp;&amp; s.charAt(left) != <span class="string">&#x27; &#x27;</span>) left--;</span><br><span class="line">            <span class="comment">// substring</span></span><br><span class="line">            ans.append(s.substring(left + <span class="number">1</span>, right + <span class="number">1</span>) + <span class="string">&quot; &quot;</span>);</span><br><span class="line">            <span class="keyword">while</span> (left &gt;= <span class="number">0</span> &amp;&amp; s.charAt(left) == <span class="string">&#x27; &#x27;</span>) left--;</span><br><span class="line">            right = left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans.toString().trim();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 步骤做法</span></span><br><span class="line">暂略</span><br></pre></td></tr></table></figure>
+
+<p>本题明显利用解法一是巨正确的，维护一个单词窗口，直接添加至新空间即可，但是空间复杂度上去了;</p>
+<p>解法二的步骤如下，暂不实现：</p>
+<ul>
+<li><p>反转整个字符串</p>
+</li>
+<li><p>去除多余空格</p>
+</li>
+<li><p>反转每个单词</p>
+</li>
+</ul>
+<p>其中，去除多余空格的操作需要学习一下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C语言</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">removeExtraSpaces</span><span class="params">(<span class="built_in">string</span>&amp; s)</span> &#123;<span class="comment">//去除所有空格并在相邻单词之间添加空格, 快慢指针。</span></span><br><span class="line">    <span class="type">int</span> slow = <span class="number">0</span>;   <span class="comment">//整体思想参考https://programmercarl.com/0027.移除元素.html</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.size(); ++i) &#123; <span class="comment">//</span></span><br><span class="line">        <span class="keyword">if</span> (s[i] != <span class="string">&#x27; &#x27;</span>) &#123; <span class="comment">//遇到非空格就处理，即删除所有空格。</span></span><br><span class="line">            <span class="keyword">if</span> (slow != <span class="number">0</span>) s[slow++] = <span class="string">&#x27; &#x27;</span>; <span class="comment">//手动控制空格，给单词之间添加空格。slow != 0说明不是第一个单词，需要在单词前添加空格。</span></span><br><span class="line">            <span class="keyword">while</span> (i &lt; s.size() &amp;&amp; s[i] != <span class="string">&#x27; &#x27;</span>) &#123; <span class="comment">//补上该单词，遇到空格说明单词结束。</span></span><br><span class="line">                s[slow++] = s[i++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    s.resize(slow); <span class="comment">//slow的大小即为去除多余空格后的大小。</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Java语言</span></span><br><span class="line">private StringBuilder <span class="title function_">removeSpace</span><span class="params">(String s)</span> &#123;</span><br><span class="line">        <span class="comment">// System.out.println(&quot;ReverseWords.removeSpace() called with: s = [&quot; + s + &quot;]&quot;);</span></span><br><span class="line">        <span class="type">int</span> start = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> end = s.length() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (s.charAt(start) == <span class="string">&#x27; &#x27;</span>) start++;</span><br><span class="line">        <span class="keyword">while</span> (s.charAt(end) == <span class="string">&#x27; &#x27;</span>) end--;</span><br><span class="line">        StringBuilder sb = new StringBuilder();</span><br><span class="line">        <span class="keyword">while</span> (start &lt;= end) &#123;</span><br><span class="line">            <span class="type">char</span> c = s.charAt(start);</span><br><span class="line">            <span class="keyword">if</span> (c != <span class="string">&#x27; &#x27;</span> || sb.charAt(sb.length() - <span class="number">1</span>) != <span class="string">&#x27; &#x27;</span>) &#123;</span><br><span class="line">                sb.append(c);</span><br><span class="line">            &#125;</span><br><span class="line">            start++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// System.out.println(&quot;ReverseWords.removeSpace returned: sb = [&quot; + sb + &quot;]&quot;);</span></span><br><span class="line">        <span class="keyword">return</span> sb;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、左旋转字符串"><a href="#五、左旋转字符串" class="headerlink" title="五、左旋转字符串"></a>五、左旋转字符串</h2><p>字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。请定义一个函数实现字符串左旋转操作的功能。比如，输入字符串”abcdefg”和数字2，该函数将返回左旋转两位得到的结果”cdefgab”。</p>
+<p>示例 1：<br>输入: s = “abcdefg”, k = 2<br>输出: “cdefgab”</p>
+<p>示例 2：<br>输入: s = “lrloseumgh”, k = 6<br>输出: “umghlrlose”</p>
+<p>限制：<br>1 &lt;= k &lt; s.length &lt;= 10000</p>
+<h3 id="Java代码实现-3"><a href="#Java代码实现-3" class="headerlink" title="Java代码实现"></a>Java代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 整体反转+局部反转</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">reverseLeftWords</span><span class="params">(String s, <span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> s.length();</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>(s);</span><br><span class="line">        reverse(ans, <span class="number">0</span>, len - <span class="number">1</span>);</span><br><span class="line">        reverse(ans, <span class="number">0</span>, len - n - <span class="number">1</span>);</span><br><span class="line">        reverse(ans, len - n, len - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> ans.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">reverse</span><span class="params">(StringBuilder s, <span class="type">int</span> begin, <span class="type">int</span> end)</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (begin &lt; end) &#123;</span><br><span class="line">            <span class="type">char</span> <span class="variable">tmp</span> <span class="operator">=</span> s.charAt(begin);</span><br><span class="line">            s.setCharAt(begin, s.charAt(end));</span><br><span class="line">            s.setCharAt(end, tmp);</span><br><span class="line">            begin++;</span><br><span class="line">            end--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 暴力模拟</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">reverseLeftWords</span><span class="params">(String s, <span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> n;</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>(s.substring(n));</span><br><span class="line">        <span class="keyword">while</span> (tmp &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            ans.append(s.charAt(n - tmp));</span><br><span class="line">            tmp--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本题首先想到的我反正是解法二，直接将字符串拼接即可。</p>
+<p>解法一利用了反转的思想，核心还是反转字符串的实现。</p>
+<h2 id="六、实现strStr-KMP"><a href="#六、实现strStr-KMP" class="headerlink" title="六、实现strStr()-KMP"></a>六、实现strStr()-KMP</h2><p>实现 strStr() 函数。</p>
+<p>给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。</p>
+<p>示例 1: 输入: haystack = “hello”, needle = “ll” 输出: 2</p>
+<p>示例 2: 输入: haystack = “aaaaa”, needle = “bba” 输出: -1</p>
+<p>说明: 当 needle 是空字符串时，我们应当返回什么值呢？这是一个在面试中很好的问题。 对于本题而言，当 needle 是空字符串时我们应当返回 0 。这与C语言的 strstr() 以及 Java的 indexOf() 定义相符。</p>
+<h3 id="Java代码实现-4"><a href="#Java代码实现-4" class="headerlink" title="Java代码实现"></a>Java代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">strStr</span><span class="params">(String haystack, String needle)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">hLen</span> <span class="operator">=</span> haystack.length();</span><br><span class="line">        <span class="type">int</span> <span class="variable">nLen</span> <span class="operator">=</span> needle.length();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构建next数组</span></span><br><span class="line">        <span class="type">int</span>[] next = <span class="keyword">new</span> <span class="title class_">int</span>[nLen];</span><br><span class="line">        next[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="type">char</span>[] hh = haystack.toCharArray();</span><br><span class="line">        <span class="type">char</span>[] nn = needle.toCharArray();</span><br><span class="line">        <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; nLen; ++i) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; nn[i] != nn[j]) j = next[j - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (nn[i] == nn[j]) j++;</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 进行匹配</span></span><br><span class="line">        j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; hLen; ++i) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; hh[i] != nn[j]) j = next[j - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (hh[i] == nn[j]) j++;</span><br><span class="line">            <span class="keyword">if</span> (j == nLen) <span class="keyword">return</span> i - nLen + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在一个字符串中找寻另一个字符串是否在里面。这就是大名鼎鼎的KMP算法解决的问题。</p>
+<p>KMP算法精简总结：</p>
+<ul>
+<li><p>首先根据模式串构造一个next数组</p>
+</li>
+<li><p>利用next数组在主串中寻找模式串的下标</p>
+</li>
+</ul>
+<blockquote>
+<p>前缀：不包含最后一个字符的所有以第一个字符开头的连续子串</p>
+<p>后缀：不包含第一个字符的所有以最后一个字符结尾的连续子串</p>
+</blockquote>
+<blockquote>
+<p><code>next</code>数组代表的是什么？</p>
+</blockquote>
+<p>又称为前缀表，代表的是相同的前后缀长度。例如：字符串a的最长相等前后缀为0。 字符串aa的最长相等前后缀为1。 字符串aaa的最长相等前后缀为2。</p>
+<blockquote>
+<p>用前缀表的目的是什么？</p>
+</blockquote>
+<p>通过前缀表模式串指针不必回溯至开头进行匹配，而是移动到与不匹配的位置<strong>具有相同前缀的位置</strong>，为啥？因为现在只是<strong>当前位置不匹配啊</strong>，之前的一部分我已经匹配成功了哇，所以我找到之前的和我匹配成功字符串相同的字符串的下一个字符再进行匹配不就好了吗？这也就是前缀相同存在的意义。需要持续理解。</p>
+<h2 id="七、重复的子字符串"><a href="#七、重复的子字符串" class="headerlink" title="七、重复的子字符串"></a>七、重复的子字符串</h2><p>给定一个非空的字符串，判断它是否可以由它的一个子串重复多次构成。给定的字符串只含有小写英文字母，并且长度不超过10000。</p>
+<p>示例 1:<br>输入: “abab”<br>输出: True<br>解释: 可由子字符串 “ab” 重复两次构成。</p>
+<p>示例 2:<br>输入: “aba”<br>输出: False</p>
+<p>示例 3:<br>输入: “abcabcabcabc”<br>输出: True<br>解释: 可由子字符串 “abc” 重复四次构成。 (或者子字符串 “abcabc” 重复两次构成。)</p>
+<h3 id="Java代码实现-5"><a href="#Java代码实现-5" class="headerlink" title="Java代码实现"></a>Java代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调包侠</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">repeatedSubstringPattern</span><span class="params">(String s)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (s + s).substring(<span class="number">1</span>, s.length() * <span class="number">2</span> - <span class="number">1</span>).indexOf(s) != -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// KMP思想</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">repeatedSubstringPattern</span><span class="params">(String s)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> s.length();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构造next数组</span></span><br><span class="line">        <span class="type">int</span>[] next = <span class="keyword">new</span> <span class="title class_">int</span>[len];</span><br><span class="line">        next[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">char</span>[] sChar = s.toCharArray();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; len; ++i) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; sChar[i] != sChar[j]) j = next[j - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (sChar[i] == sChar[j]) j++;</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (next[len - <span class="number">1</span>] != <span class="number">0</span> &amp;&amp; next[len - <span class="number">1</span>] % (len - next[len - <span class="number">1</span>]) == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>解法一的主要思想就是：<strong>一个重复字符串再加上它本身后，在去除首尾一个字符后（目的是避免原串干扰），剩余字符串仍然包含了原串。</strong></p>
+<p>解法二的主要思想就比较复杂了，利用KMP的思想求出字符串的前缀表，若这个字符串的最长相同前后缀长度不为0，并且<strong>原字符串长度减去最长相同前后缀长度后的结果可以被最长相同前后缀整除，那么说明这个字符串由子串多次重复构成。</strong></p>
+<blockquote>
+<p>怎么理解最小重复子串和最长相等前后缀有关系？</p>
+<p>最小重复子串就是<strong>最长相等前后缀不包含的子串</strong></p>
+<p>举个例子：字符串<code>ababababab</code>，长度为10</p>
+<p>最长相等前后缀是什么？答：<code>abababab</code>，长度为几？答：8，不包含的子串是什么？答：<code>ab</code>，而这个<code>ab</code>就是最小重复子串。</p>
+<p><img src="https://code-thinking-1253855093.file.myqcloud.com/pics/20220728212157.png" alt="图四"></p>
+</blockquote>
+<p>举个例子：</p>
+<p>拿字符串<code>aba</code>举例</p>
+<p>其前缀表为（<strong>下标i之前（包括i）的字符串中，有多大长度的相同前缀后缀。</strong>）：</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">a</th>
+<th align="center">b</th>
+<th align="center">a</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">next[i]</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+</tbody></table>
+<p>其中最长相同前后缀长度为<code>1</code>，也就是<code>a</code>，数组长度减去1后为2，不能被整除。</p>
+<p><strong>数组长度减去最长相同前后缀的长度相当于是第一个周期的长度，也就是一个周期的长度，如果这个周期可以被整除，就说明整个数组就是这个周期的循环。</strong></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>字符串操作常见的操作为：</p>
+<ul>
+<li><p>双指针</p>
+</li>
+<li><p>KMP</p>
+</li>
+<li><p>整体反转+局部反转</p>
+</li>
+<li><p>模拟</p>
+</li>
+<li><p>等等</p>
+</li>
+</ul>
+<p>可以说，字符串难度不亚于二茶树。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" rel="tag"># 算法学习</a>
+              <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/" rel="tag"># 字符串操作</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/03/11/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" rel="prev" title="贪心算法">
+                  <i class="fa fa-chevron-left"></i> 贪心算法
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hence Jacki</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">NaNm</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">NaN:aN</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="贪心  分发饼干 摆动序列 买卖股票的最佳时机II 跳跃游戏 跳跃游戏II 加油站 K次取反后最大化的数组和 分发糖果 柠檬水找零 根据身高重建队列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="贪心算法">
+<meta property="og:url" content="http://example.com/2023/03/11/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="KZ">
+<meta property="og:description" content="贪心  分发饼干 摆动序列 买卖股票的最佳时机II 跳跃游戏 跳跃游戏II 加油站 K次取反后最大化的数组和 分发糖果 柠檬水找零 根据身高重建队列">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201124174327597.png">
+<meta property="article:published_time" content="2023-03-11T10:38:48.000Z">
+<meta property="article:modified_time" content="2023-03-11T10:39:21.895Z">
+<meta property="article:author" content="Hence Jacki">
+<meta property="article:tag" content="算法学习">
+<meta property="article:tag" content="贪心">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201124174327597.png">
+
+
+<link rel="canonical" href="http://example.com/2023/03/11/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2023/03/11/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/","path":"2023/03/11/贪心算法/","title":"贪心算法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>贪心算法 | KZ</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">KZ</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个技术狂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%AA%E5%BF%83"><span class="nav-number">1.</span> <span class="nav-text">贪心</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%88%86%E5%8F%91%E9%A5%BC%E5%B9%B2"><span class="nav-number">1.1.</span> <span class="nav-text">一、分发饼干</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%91%86%E5%8A%A8%E5%BA%8F%E5%88%97"><span class="nav-number">1.2.</span> <span class="nav-text">二、摆动序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BAII"><span class="nav-number">1.3.</span> <span class="nav-text">三、买卖股票的最佳时机II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F"><span class="nav-number">1.4.</span> <span class="nav-text">四、跳跃游戏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8FII"><span class="nav-number">1.5.</span> <span class="nav-text">五、跳跃游戏II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%8A%A0%E6%B2%B9%E7%AB%99"><span class="nav-number">1.6.</span> <span class="nav-text">六、加油站</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81K%E6%AC%A1%E5%8F%96%E5%8F%8D%E5%90%8E%E7%9A%84%E6%9C%80%E5%A4%A7%E5%8C%96%E6%95%B0%E7%BB%84%E5%92%8C"><span class="nav-number">1.7.</span> <span class="nav-text">七、K次取反后的最大化数组和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C"><span class="nav-number">1.8.</span> <span class="nav-text">八、分发糖果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E6%9F%A0%E6%AA%AC%E6%B0%B4%E6%89%BE%E9%9B%B6"><span class="nav-number">1.9.</span> <span class="nav-text">九、柠檬水找零</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97"><span class="nav-number">1.10.</span> <span class="nav-text">十、根据身高重建队列</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hence Jacki"
+      src="https://avatars.githubusercontent.com/u/60866345?v=4">
+  <p class="site-author-name" itemprop="name">Hence Jacki</p>
+  <div class="site-description" itemprop="description">车到山前必有路</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/11/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/60866345?v=4">
+      <meta itemprop="name" content="Hence Jacki">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KZ">
+      <meta itemprop="description" content="车到山前必有路">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="贪心算法 | KZ">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          贪心算法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-03-11 18:38:48 / Modified: 18:39:21" itemprop="dateCreated datePublished" datetime="2023-03-11T18:38:48+08:00">2023-03-11</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>4.2k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>15 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h1><blockquote>
+<ul>
+<li>分发饼干</li>
+<li>摆动序列</li>
+<li>买卖股票的最佳时机II</li>
+<li>跳跃游戏</li>
+<li>跳跃游戏II</li>
+<li>加油站</li>
+<li>K次取反后最大化的数组和</li>
+<li>分发糖果</li>
+<li>柠檬水找零</li>
+<li>根据身高重建队列</li>
+</ul>
+</blockquote>
+<span id="more"></span>
+<h2 id="一、分发饼干"><a href="#一、分发饼干" class="headerlink" title="一、分发饼干"></a>一、分发饼干</h2><p>假设你是一位很棒的家长，想要给你的孩子们一些小饼干。但是，每个孩子最多只能给一块饼干。</p>
+<p>对每个孩子  i，都有一个胃口值 g[i]，这是能让孩子们满足胃口的饼干的最小尺寸；并且每块饼干 j，都有一个尺寸 s[j] 。如果 s[j] &gt;=  g[i]，我们可以将这个饼干 j 分配给孩子 i ，这个孩子会得到满足。你的目标是尽可能满足越多数量的孩子，并输出这个最大数值。</p>
+<p>示例 1:</p>
+<ul>
+<li>输入: g = [1,2,3], s = [1,1]</li>
+<li>输出: 1 解释:你有三个孩子和两块小饼干，3个孩子的胃口值分别是：1,2,3。虽然你有两块小饼干，由于他们的尺寸都是1，你只能让胃口值是1的孩子满足。所以你应该输出1。</li>
+</ul>
+<p>示例 2:</p>
+<ul>
+<li>输入: g = [1,2], s = [1,2,3]</li>
+<li>输出: 2</li>
+<li>解释:你有两个孩子和三块小饼干，2个孩子的胃口值分别是1,2。你拥有的饼干数量和尺寸都足以让所有孩子满足。所以你应该输出2.</li>
+</ul>
+<p>提示：</p>
+<ul>
+<li>1 &lt;= g.length &lt;= 3 * 10^4</li>
+<li>0 &lt;= s.length &lt;= 3 * 10^4</li>
+<li>1 &lt;= g[i], s[j] &lt;= 2^31 - 1</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findContentChildren</span><span class="params">(<span class="type">int</span>[] g, <span class="type">int</span>[] s)</span> &#123;</span><br><span class="line">        Arrays.sort(g);</span><br><span class="line">        Arrays.sort(s);</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> s.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> g.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (index &gt;= <span class="number">0</span> &amp;&amp; s[index] &gt;= g[i]) &#123;</span><br><span class="line">                ans++;</span><br><span class="line">                index--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本题的贪心策略为：尽量拿大尺寸饼干去喂大胃口的孩子，达到整体最优</p>
+<h2 id="二、摆动序列"><a href="#二、摆动序列" class="headerlink" title="二、摆动序列"></a>二、摆动序列</h2><p>如果连续数字之间的差严格地在正数和负数之间交替，则数字序列称为摆动序列。第一个差（如果存在的话）可能是正数或负数。少于两个元素的序列也是摆动序列。</p>
+<p>例如， [1,7,4,9,2,5] 是一个摆动序列，因为差值 (6,-3,5,-7,3) 是正负交替出现的。相反, [1,4,7,2,5] 和 [1,7,4,5,5]  不是摆动序列，第一个序列是因为它的前两个差值都是正数，第二个序列是因为它的最后一个差值为零。</p>
+<p>给定一个整数序列，返回作为摆动序列的最长子序列的长度。 通过从原始序列中删除一些（也可以不删除）元素来获得子序列，剩下的元素保持其原始顺序。</p>
+<p>示例 1:</p>
+<ul>
+<li>输入: [1,7,4,9,2,5]</li>
+<li>输出: 6</li>
+<li>解释: 整个序列均为摆动序列。</li>
+</ul>
+<p>示例 2:</p>
+<ul>
+<li>输入: [1,17,5,10,13,15,10,5,16,8]</li>
+<li>输出: 7</li>
+<li>解释: 这个序列包含几个长度为 7 摆动序列，其中一个可为[1,17,10,13,10,16,8]。</li>
+</ul>
+<p>示例 3:</p>
+<ul>
+<li>输入: [1,2,3,4,5,6,7,8,9]</li>
+<li>输出: 2</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">wiggleMaxLength</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.length &lt;= <span class="number">1</span>) <span class="keyword">return</span> nums.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">curdiff</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">prediff</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span>  <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">            curdiff = nums[i + <span class="number">1</span>] - nums[i];</span><br><span class="line">            <span class="keyword">if</span> ((prediff &gt;= <span class="number">0</span> &amp;&amp; curdiff &lt; <span class="number">0</span>) || (prediff &lt;= <span class="number">0</span> &amp;&amp; curdiff &gt; <span class="number">0</span>)) &#123;</span><br><span class="line">                ans++;</span><br><span class="line">                prediff = curdiff;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本题对于我来说太难了。。。。。。。</p>
+<p>主要思想是去除单调坡度上的结点！</p>
+<p><img src="https://img-blog.csdnimg.cn/20201124174327597.png" alt="376.摆动序列"></p>
+<h2 id="三、买卖股票的最佳时机II"><a href="#三、买卖股票的最佳时机II" class="headerlink" title="三、买卖股票的最佳时机II"></a>三、买卖股票的最佳时机II</h2><p>给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。</p>
+<p>设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。</p>
+<p>注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
+<p>示例 1:</p>
+<ul>
+<li>输入: [7,1,5,3,6,4]</li>
+<li>输出: 7</li>
+<li>解释: 在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4。随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 = 3 。</li>
+</ul>
+<p>示例 2:</p>
+<ul>
+<li>输入: [1,2,3,4,5]</li>
+<li>输出: 4</li>
+<li>解释: 在第 1 天（股票价格 = 1）的时候买入，在第 5 天 （股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4  。注意你不能在第 1 天和第 2 天接连购买股票，之后再将它们卖出。因为这样属于同时参与了多笔交易，你必须在再次购买前出售掉之前的股票。</li>
+</ul>
+<p>示例 3:</p>
+<ul>
+<li>输入: [7,6,4,3,1]</li>
+<li>输出: 0</li>
+<li>解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。</li>
+</ul>
+<p>提示：</p>
+<ul>
+<li>1 &lt;= prices.length &lt;= 3 * 10 ^ 4</li>
+<li>0 &lt;= prices[i] &lt;= 10 ^ 4</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>[] prices)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; prices.length - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">diff</span> <span class="operator">=</span> prices[i + <span class="number">1</span>] - prices[i];</span><br><span class="line">            <span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                ans += diff;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本题一开始我是想歪了，想出了一大堆无用变量。</p>
+<p>最后才想清楚，只要相邻差值大于0，即局部利润最大导致全局利润最大，也就是说在最低点买进，在最高点套现就能获得最大利润。</p>
+<h2 id="四、跳跃游戏"><a href="#四、跳跃游戏" class="headerlink" title="四、跳跃游戏"></a>四、跳跃游戏</h2><p>给定一个非负整数数组，你最初位于数组的第一个位置。</p>
+<p>数组中的每个元素代表你在该位置可以跳跃的最大长度。</p>
+<p>判断你是否能够到达最后一个位置。</p>
+<p>示例 1:</p>
+<ul>
+<li>输入: [2,3,1,1,4]</li>
+<li>输出: true</li>
+<li>解释: 我们可以先跳 1 步，从位置 0 到达 位置 1, 然后再从位置 1 跳 3 步到达最后一个位置。</li>
+</ul>
+<p>示例 2:</p>
+<ul>
+<li>输入: [3,2,1,0,4]</li>
+<li>输出: false</li>
+<li>解释: 无论怎样，你总会到达索引为 3 的位置。但该位置的最大跳跃长度是 0 ， 所以你永远不可能到达最后一个位置。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">canJump</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">cover</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// i &lt;= cover表示只能在cover范围内活动</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt;= cover; ++i) &#123;</span><br><span class="line">            <span class="comment">// i代表当前位置</span></span><br><span class="line">            cover = Math.max(i + nums[i], cover);</span><br><span class="line">            <span class="keyword">if</span> (cover &gt;= nums.length - <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本题是需要关注每一位置能多远？即覆盖范围，在覆盖范围内活动并求得最大的覆盖范围，若覆盖范围超过了数组长度，则肯定能到达。否则，永远到达不了。</p>
+<h2 id="五、跳跃游戏II"><a href="#五、跳跃游戏II" class="headerlink" title="五、跳跃游戏II"></a>五、跳跃游戏II</h2><p>给定一个非负整数数组，你最初位于数组的第一个位置。</p>
+<p>数组中的每个元素代表你在该位置可以跳跃的最大长度。</p>
+<p>你的目标是使用最少的跳跃次数到达数组的最后一个位置。</p>
+<p>示例:</p>
+<ul>
+<li>输入: [2,3,1,1,4]</li>
+<li>输出: 2</li>
+<li>解释: 跳到最后一个位置的最小跳跃数是 2。从下标为 0 跳到下标为 1 的位置，跳 1 步，然后跳 3 步到达数组的最后一个位置。</li>
+</ul>
+<p>说明: 假设你总是可以到达数组的最后一个位置。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">jump</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">maxposition</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">board</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">            <span class="comment">// 从当前位置能跳到的最远范围记录</span></span><br><span class="line">            maxposition = Math.max(maxposition, i + nums[i]);</span><br><span class="line">            <span class="keyword">if</span> (i == board) &#123;</span><br><span class="line">                <span class="comment">// 当前位置到达上一覆盖范围边界，更新为上一覆盖范围中能跳的最大值</span></span><br><span class="line">                board = maxposition;</span><br><span class="line">                <span class="comment">// 在跳到上一覆盖范围中的最大值时，此时跳数仍然为第二次跳跃</span></span><br><span class="line">                ans++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本题为上一题的拓展。</p>
+<p>上一题只要关注覆盖范围即可，本题需要关注最小跳数。</p>
+<p>思路一开始想的是，能跳多远跳多远，往远了跳。</p>
+<p>那么继承上一题的思想就可以这样理解：在覆盖范围内找到最大位移的那个下标，当下标移动到本覆盖范围的边界时，此时最大跳跃值已经被记录下来，在本跳跃范围内，从上一位置跳到某位置都算作第二次跳跃，只要将步数加一即可跳到最大位移值得位置，从而下一次能跳的更远！</p>
+<h2 id="六、加油站"><a href="#六、加油站" class="headerlink" title="六、加油站"></a>六、加油站</h2><p>在一条环路上有 N 个加油站，其中第 i 个加油站有汽油 gas[i] 升。</p>
+<p>你有一辆油箱容量无限的的汽车，从第 i 个加油站开往第 i+1 个加油站需要消耗汽油 cost[i] 升。你从其中的一个加油站出发，开始时油箱为空。</p>
+<p>如果你可以绕环路行驶一周，则返回出发时加油站的编号，否则返回 -1。</p>
+<p>说明:</p>
+<ul>
+<li>如果题目有解，该答案即为唯一答案。</li>
+<li>输入数组均为非空数组，且长度相同。</li>
+<li>输入数组中的元素均为非负数。</li>
+</ul>
+<p>示例 1: 输入:</p>
+<ul>
+<li>gas  = [1,2,3,4,5]</li>
+<li>cost = [3,4,5,1,2]</li>
+</ul>
+<p>输出: 3 解释:</p>
+<ul>
+<li>从 3 号加油站(索引为 3 处)出发，可获得 4 升汽油。此时油箱有 = 0 + 4 = 4 升汽油</li>
+<li>开往 4 号加油站，此时油箱有 4 - 1 + 5 = 8 升汽油</li>
+<li>开往 0 号加油站，此时油箱有 8 - 2 + 1 = 7 升汽油</li>
+<li>开往 1 号加油站，此时油箱有 7 - 3 + 2 = 6 升汽油</li>
+<li>开往 2 号加油站，此时油箱有 6 - 4 + 3 = 5 升汽油</li>
+<li>开往 3 号加油站，你需要消耗 5 升汽油，正好足够你返回到 3 号加油站。</li>
+<li>因此，3 可为起始索引。</li>
+</ul>
+<p>示例 2: 输入:</p>
+<ul>
+<li>gas  = [2,3,4]</li>
+<li>cost = [3,4,3]</li>
+<li>输出: -1</li>
+<li>解释: 你不能从 0 号或 1 号加油站出发，因为没有足够的汽油可以让你行驶到下一个加油站。我们从 2 号加油站出发，可以获得 4 升汽油。 此时油箱有 = 0 + 4 = 4 升汽油。开往 0 号加油站，此时油箱有 4 - 3 + 2 = 3 升汽油。开往 1 号加油站，此时油箱有 3 - 3 + 3 = 3 升汽油。你无法返回 2 号加油站，因为返程需要消耗 4 升汽油，但是你的油箱只有 3  升汽油。因此，无论怎样，你都不可能绕环路行驶一周</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">canCompleteCircuit</span><span class="params">(<span class="type">int</span>[] gas, <span class="type">int</span>[] cost)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] diff = <span class="keyword">new</span> <span class="title class_">int</span>[gas.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; gas.length; ++i) &#123;</span><br><span class="line">            diff[i] = gas[i] - cost[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">costs</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">start</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">total</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; diff.length; ++i) &#123;</span><br><span class="line">            costs += diff[i];</span><br><span class="line">            total += diff[i];</span><br><span class="line">            <span class="keyword">if</span> (costs &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                costs = <span class="number">0</span>;</span><br><span class="line">                start = i + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (total &lt; <span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> start;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本题求差值是想到了，但是对其利用并不是很好，明明可以判断到油耗和为0后，直接记录起始位置，然后总油耗置为0重新计数，从而到最后再判断是否能够跑一圈！</p>
+<h2 id="七、K次取反后的最大化数组和"><a href="#七、K次取反后的最大化数组和" class="headerlink" title="七、K次取反后的最大化数组和"></a>七、K次取反后的最大化数组和</h2><p>给定一个整数数组 A，我们只能用以下方法修改该数组：我们选择某个索引 i 并将 A[i] 替换为 -A[i]，然后总共重复这个过程 K 次。（我们可以多次选择同一个索引 i。）</p>
+<p>以这种方式修改数组后，返回数组可能的最大和。</p>
+<p>示例 1：</p>
+<ul>
+<li>输入：A = [4,2,3], K = 1</li>
+<li>输出：5</li>
+<li>解释：选择索引 (1,) ，然后 A 变为 [4,-2,3]。</li>
+</ul>
+<p>示例 2：</p>
+<ul>
+<li>输入：A = [3,-1,0,2], K = 3</li>
+<li>输出：6</li>
+<li>解释：选择索引 (1, 2, 2) ，然后 A 变为 [3,1,0,2]。</li>
+</ul>
+<p>示例 3：</p>
+<ul>
+<li>输入：A = [2,-3,-1,5,-4], K = 2</li>
+<li>输出：13</li>
+<li>解释：选择索引 (1, 4) ，然后 A 变为 [2,3,-1,5,4]。</li>
+</ul>
+<p>提示：</p>
+<ul>
+<li>1 &lt;= A.length &lt;= 10000</li>
+<li>1 &lt;= K &lt;= 10000</li>
+<li>-100 &lt;= A[i] &lt;= 100</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">largestSumAfterKNegations</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        nums = IntStream.of(nums).boxed().sorted((i1, i2)-&gt; Math.abs(i2) - Math.abs(i1)).mapToInt(Integer::intValue).toArray();</span><br><span class="line">        <span class="comment">// 先将数组中的负数变为正数</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] &lt; <span class="number">0</span> &amp;&amp; k &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                nums[i] *= -<span class="number">1</span>;</span><br><span class="line">                k--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 若数组中全为正数，则将最小元素变为负数</span></span><br><span class="line">        <span class="comment">// 如果是偶数，变来变去还是那个数不用变</span></span><br><span class="line">        <span class="keyword">if</span> (k % <span class="number">2</span> == <span class="number">1</span>) nums[nums.length - <span class="number">1</span>] *= -<span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 求和即可</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : nums) &#123;</span><br><span class="line">            ans += num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本题的贪心策略为将数组中<strong>绝对值</strong>最大的负数变为正数，这样就可以使得整体最优。</p>
+<p>到最后倘若K还剩下奇数个，那么直接将最小值翻转，使得损失降到最低，这样一来还是全局最优！</p>
+<h2 id="八、分发糖果"><a href="#八、分发糖果" class="headerlink" title="八、分发糖果"></a>八、分发糖果</h2><p>老师想给孩子们分发糖果，有 N 个孩子站成了一条直线，老师会根据每个孩子的表现，预先给他们评分。</p>
+<p>你需要按照以下要求，帮助老师给这些孩子分发糖果：</p>
+<ul>
+<li>每个孩子至少分配到 1 个糖果。</li>
+<li>相邻的孩子中，评分高的孩子必须获得更多的糖果。</li>
+</ul>
+<p>那么这样下来，老师至少需要准备多少颗糖果呢？</p>
+<p>示例 1:</p>
+<ul>
+<li>输入: [1,0,2]</li>
+<li>输出: 5</li>
+<li>解释: 你可以分别给这三个孩子分发 2、1、2 颗糖果。</li>
+</ul>
+<p>示例 2:</p>
+<ul>
+<li>输入: [1,2,2]</li>
+<li>输出: 4</li>
+<li>解释: 你可以分别给这三个孩子分发 1、2、1 颗糖果。第三个孩子只得到 1 颗糖果，这已满足上述两个条件。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">candy</span><span class="params">(<span class="type">int</span>[] ratings)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] candys = <span class="keyword">new</span> <span class="title class_">int</span>[ratings.length];</span><br><span class="line">        Arrays.fill(candys, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 从前向后</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span>  <span class="operator">=</span> <span class="number">1</span>; i &lt; ratings.length; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ratings[i] &gt; ratings[i - <span class="number">1</span>]) candys[i] = candys[i - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 从后向前</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> ratings.length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ratings[i] &gt; ratings[i + <span class="number">1</span>]) candys[i] = Math.max(candys[i], candys[i + <span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 求和</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : candys) &#123;</span><br><span class="line">            ans += num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本题一开始想的只是从前往后遍历，没想到还有从后往前遍历。</p>
+<p>分析过后发现只遍历一次肯定是不行的，只会有单向性，而需要的是双向性，换句话说一个孩子的相邻比较为2个，我是傻逼只看到了一面！。</p>
+<h2 id="九、柠檬水找零"><a href="#九、柠檬水找零" class="headerlink" title="九、柠檬水找零"></a>九、柠檬水找零</h2><p>在柠檬水摊上，每一杯柠檬水的售价为 5 美元。</p>
+<p>顾客排队购买你的产品，（按账单 bills 支付的顺序）一次购买一杯。</p>
+<p>每位顾客只买一杯柠檬水，然后向你付 5 美元、10 美元或 20 美元。你必须给每个顾客正确找零，也就是说净交易是每位顾客向你支付 5 美元。</p>
+<p>注意，一开始你手头没有任何零钱。</p>
+<p>如果你能给每位顾客正确找零，返回 true ，否则返回 false 。</p>
+<p>示例 1：</p>
+<ul>
+<li>输入：[5,5,5,10,20]</li>
+<li>输出：true</li>
+<li>解释：<ul>
+<li>前 3 位顾客那里，我们按顺序收取 3 张 5 美元的钞票。</li>
+<li>第 4 位顾客那里，我们收取一张 10 美元的钞票，并返还 5 美元。</li>
+<li>第 5 位顾客那里，我们找还一张 10 美元的钞票和一张 5 美元的钞票。</li>
+<li>由于所有客户都得到了正确的找零，所以我们输出 true。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">lemonadeChange</span><span class="params">(<span class="type">int</span>[] bills)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">five</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ten</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; bills.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (bills[i] == <span class="number">5</span>) &#123;</span><br><span class="line">                five++;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bills[i] == <span class="number">10</span>) &#123;</span><br><span class="line">                five--;</span><br><span class="line">                ten++;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bills[i] == <span class="number">20</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (ten &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    ten--;</span><br><span class="line">                    five--;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    five -= <span class="number">3</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (five &lt; <span class="number">0</span> || ten &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本题一开始想复杂了！也想到了优先使用面值最大的来找零，但是在代码编写上出现了很大的问题！</p>
+<h2 id="十、根据身高重建队列"><a href="#十、根据身高重建队列" class="headerlink" title="十、根据身高重建队列"></a>十、根据身高重建队列</h2><p>假设有打乱顺序的一群人站成一个队列，数组 people 表示队列中一些人的属性（不一定按顺序）。每个 people[i] = [hi, ki] 表示第 i 个人的身高为 hi ，前面 正好 有 ki 个身高大于或等于 hi 的人。</p>
+<p>请你重新构造并返回输入数组 people 所表示的队列。返回的队列应该格式化为数组 queue ，其中 queue[j] = [hj, kj] 是队列中第 j 个人的属性（queue[0] 是排在队列前面的人）。</p>
+<p>示例 1：</p>
+<ul>
+<li>输入：people = [[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]]</li>
+<li>输出：[[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]]</li>
+<li>解释：<ul>
+<li>编号为 0 的人身高为 5 ，没有身高更高或者相同的人排在他前面。</li>
+<li>编号为 1 的人身高为 7 ，没有身高更高或者相同的人排在他前面。</li>
+<li>编号为 2 的人身高为 5 ，有 2 个身高更高或者相同的人排在他前面，即编号为 0 和 1 的人。</li>
+<li>编号为 3 的人身高为 6 ，有 1 个身高更高或者相同的人排在他前面，即编号为 1 的人。</li>
+<li>编号为 4 的人身高为 4 ，有 4 个身高更高或者相同的人排在他前面，即编号为 0、1、2、3 的人。</li>
+<li>编号为 5 的人身高为 7 ，有 1 个身高更高或者相同的人排在他前面，即编号为 1 的人。</li>
+<li>因此 [[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]] 是重新构造后的队列。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int[][] reconstructQueue(int[][] people) &#123;</span><br><span class="line">        Arrays.sort(people, (a, b) -&gt; &#123;</span><br><span class="line">            if (a[0] == b[0]) return a[1] - b[1];</span><br><span class="line">            return b[0] - a[0];</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        List&lt;int[]&gt; ans = new LinkedList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        for (int[] p : people) &#123;</span><br><span class="line">            ans.add(p[1], p);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return ans.toArray(new int[people.length][]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本题一开始确实想到了先对哪个进行排序，但是就没有后续了，没有深入思考！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" rel="tag"># 算法学习</a>
+              <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"># 贪心</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/03/11/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" rel="prev" title="回溯算法">
+                  <i class="fa fa-chevron-left"></i> 回溯算法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/03/11/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/" rel="next" title="字符串操作">
+                  字符串操作 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hence Jacki</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">NaNm</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">NaN:aN</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
